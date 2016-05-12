@@ -6,9 +6,17 @@ ENV JAVA16_HOME /root/jdk/jdk1.6.0_45
 
 USER root
 
+RUN apt-get update && \
+    apt-get install -y wget && \
+    apt-get clean
+
+RUN wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=0B-NEimEr29WddlFEbmhqTUVOZm8' -O gdown.pl
+
+RUN perl gdown.pl 'https://docs.google.com/uc?export=download&id=0B-NEimEr29WddXo1X1hma0pTTXM' 'jdk-6u45-linux-x64.bin'
+
 RUN mkdir /root/jdk
 
-COPY jdk-6u45-linux-x64.bin /
+#COPY jdk-6u45-linux-x64.bin /
 
 RUN chmod +x jdk-6u45-linux-x64.bin
 

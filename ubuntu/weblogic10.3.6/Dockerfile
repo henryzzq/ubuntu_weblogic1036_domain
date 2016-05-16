@@ -10,6 +10,9 @@ RUN perl gdown.pl 'https://docs.google.com/uc?export=download&id=0B-NEimEr29WdbU
 #Download silence mode script
 RUN wget --no-check-certificate 'https://docs.google.com/uc?export=download&id=0B-NEimEr29WdRXNoMndCMUllMGs' -O wls-silent.xml
 
+RUN mkdir /root/Oracle && \
+    chmod a+xr /root/Oracle
+
 RUN /root/jdk/jdk1.6.0_45/bin/java -jar wls1036_generic.jar -mode=silent -silent_xml=/wls-silent.xml && \ 
 	rm /wls1036_generic.jar /wls-silent.xml 
 

@@ -14,13 +14,7 @@ RUN mv create-wls-domain.py /root/Oracle && \
 
 WORKDIR /root/Oracle/Middleware
 
-RUN /root/Oracle/Middleware/wlserver_10.3/common/bin/wlst.sh -skipWLSModuleScanning /root/Oracle/create-wls-domain.py && \
-    mkdir -p /root/Oracle/Middleware/user_projects/domains/base_domain/servers/AdminServer/security && \
-    echo "username=weblogic" > /root/Oracle/Middleware/user_projects/domains/base_domain/servers/AdminServer/security/boot.properties && \ 
-    echo "password=$ADMIN_PASSWORD" >> /root/Oracle/Middleware/user_projects/domains/base_domain/servers/AdminServer/security/boot.properties && \
-    echo "/root/Oracle/Middleware/user_projects/domains/base_domain/bin/setDomainEnv.sh" >> /root/.bashrc && \ 
-    echo "export PATH=$PATH:/root/Oracle/Middleware/wlserver_10.3/common/bin:/root/Oracle/Middleware/user_projects/domains/base_domain/bin" >> /root/.bashrc 
-
+RUN /root/Oracle/Middleware/wlserver_10.3/common/bin/wlst.sh -skipWLSModuleScanning /root/Oracle/create-wls-domain.py
 
 # Expose Node Manager default port, and also default http/https ports for admin console
 EXPOSE 7001 5556 
